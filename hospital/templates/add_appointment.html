@@ -8,7 +8,7 @@
         {% csrf_token %}
         
         <div class="form-group">
-            <label for="doctor">Doctor Name</label>
+            <label>Doctor Name</label>
             <select name="doctor" id="doctor" class="form-control" required>
                 {% for i in doctor %}
                 <option value="{{ i.id }}">{{ i.name }} [{{ i.id }}]</option>
@@ -17,7 +17,7 @@
         </div>
         
         <div class="form-group">
-            <label for="patient">Patient Name</label>
+            <label>Patient Name</label>
             <select name="patient" id="patient" class="form-control" required>
                 {% for i in patient %}
                 <option value="{{ i.id }}">{{ i.name }} [{{ i.id }}]</option>
@@ -26,12 +26,12 @@
         </div>
 
         <div class="form-group">
-            <label for="date">Date</label>
+            <label>Date</label>
             <input type="date" id="date" class="form-control" name="date" required>
         </div>
         
         <div class="form-group">
-            <label for="time">Time</label>
+            <label>Time</label>
             <input type="time" id="time" class="form-control" name="time" required>
         </div>
 

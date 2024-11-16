@@ -120,12 +120,18 @@ def View_Appointment(request):
     d = {'appoint':appoint}
     return render(request, 'view_appointment.html', d)
 
+from django.shortcuts import get_object_or_404
+
 def Add_Appointment(request):
     if request.method == "POST":
-        doctor = request.POST['doctor']
-        patient = request.POST['patient']
+        doctor_id = request.POST['doctor']
+        patient_id = request.POST['patient']
         date = request.POST['date']
         time = request.POST['time']
+
+        # Retrieve the Doctor and Patient instances
+        doctor = get_object_or_404(Doctor, pk=doctor_id)
+        patient = get_object_or_404(Patient, pk=patient_id)
 
         # Check for overlapping appointment
         overlapping_appointment = Appointment.objects.filter(
@@ -156,6 +162,7 @@ def Add_Appointment(request):
         'doctor': Doctor.objects.all(),
         'patient': Patient.objects.all()
     })
+
 
 def Delete_Appointment(request, pid):
     if not request.user.is_staff:
