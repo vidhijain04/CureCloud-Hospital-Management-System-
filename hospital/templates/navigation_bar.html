@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>CureCloud</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mystyle.css' %}">
+
+    <!-- data table cdn start -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/dataTables.buttons.js"></script>    
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.html5.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                dom: '<"d-flex text-center justify-content-between align-items-center mb-3"lfB>rtip', // Custom layout for search and buttons
+                buttons: [
+                    {
+                        extend: 'copyHtml5',
+                        text: '<i class="fas fa-copy"></i> Copy',
+                        className: 'btn btn-sm btn-info'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: '<i class="fas fa-file-csv"></i> CSV',
+                        className: 'btn btn-sm btn-success'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="fas fa-file-excel"></i> Excel',
+                        className: 'btn btn-sm btn-primary'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: '<i class="fas fa-file-pdf"></i> PDF',
+                        className: 'btn btn-sm btn-danger'
+                    }
+                ],
+                responsive: true,
+                paging: true,
+                searching: true,
+                ordering: true,
+            });
+        });
+
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.0/css/buttons.dataTables.css">
+    <!-- data table cdn ends -->
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">CureCloud</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="myMenu">
+                <ul class="navbar-nav text-center ml-auto">
+                    
+                    {% if not request.user.is_staff %}
+                    <li class="nav-item"><a href="{% url 'login' %}" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a href="{% url 'about' %}" class="nav-link"><i class="fa-solid fa-address-card"></i> About</a></li>
+                    <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link"><i class="fa-solid fa-square-phone"></i> Contact</a></li>
+                    {% endif %}
+
+                    {% if request.user.is_staff %}
+                        <li class="nav-item"><a href="{% url 'home' %}" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Doctor</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'add_doctor'%}" class="dropdown-item">Add Doctor</a></li>
+                                <li><a href="{% url 'view_doctor' %}" class="dropdown-item">View Doctor</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Patient</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'add_patient' %}" class="dropdown-item">Add Patient</a></li>
+                                <li><a href="{% url 'view_patient' %}" class="dropdown-item">View Patient</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Appointment</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'add_appointment' %}" class="dropdown-item">Add Appointment</a></li>
+                                <li><a href="{% url 'view_appointment' %}" class="dropdown-item">View Appointment</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block body %}
+
+    {% endblock %}
+</body>
+</html>

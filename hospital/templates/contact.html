@@ -1,0 +1,39 @@
+{% extends 'navigation_bar.html' %}
+{% load static %}
+{% block body %}
+<div class="container mt-5 py-5 bg-light rounded shadow-lg">
+    <h2 class="text-center text-dark mb-5">Contact Us</h2>
+
+    <div class="row text-center">
+        <!-- Contact Section -->
+        <div class="col-lg-3 mb-4">
+            <h4 class="text-info"><i class="fa-solid fa-phone me-2"></i> Contact</h4>
+            <p class="mt-2 font-weight-bold">
+                <a class="text-decoration-none" style="color: #dc3545;" href="tel:+91977753XXXX">+91 977753XXXX</a>
+            </p>
+        </div>
+
+        <!-- Email Section -->
+        <div class="col-lg-3 mb-4">
+            <h4 class="text-info"><i class="fas fa-envelope me-2"></i> Email</h4>
+            <p class="mt-2 font-weight-bold">
+                <a class="text-decoration-none" style="color: #dc3545;" href="mailto:vidhijaincurecloud@gmail.com">vidhijaincurecloud@gmail.com</a>
+            </p>
+        </div>
+
+        <!-- Address Section -->
+        <div class="col-lg-3 mb-4">
+            <h4 class="text-info"><i class="fas fa-map-marker-alt me-2"></i> Address</h4>
+            <p class="mt-2 font-weight-bold">
+                <a class="text-decoration-none" style="color: #dc3545;" href="http://maps.google.com/maps?q=IIT+Jodhpur">Near IIT Jodhpur</a>
+            </p>
+        </div>
+
+        <!-- Working Hours Section -->
+        <div class="col-lg-3 mb-4">
+            <h4 class="text-info"><i class="fas fa-clock me-2"></i> Working Hours</h4>
+            <p class="mt-2 font-weight-bold" style="color: #dc3545;">9:00 AM to 7:00 PM</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

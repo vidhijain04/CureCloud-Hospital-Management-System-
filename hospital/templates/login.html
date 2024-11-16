@@ -1,0 +1,34 @@
+{% extends 'navigation_bar.html' %}
+{% load static %}
+{% block body %}
+
+{% ifequal error "no" %}
+<script>
+    alert('Logged In Successfully');
+    window.location.href = "{% url 'home' %}";
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert('Incorrect Username or Password, Try Again!');
+</script>
+{% endifequal %}
+
+<div class="container" style="margin-top: 50px; max-width: 500px; background-color: #f8f9fa; border-radius: 10px; padding: 30px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+    <h2 class="text-center mb-4" style="font-family: Arial, sans-serif; color: #343a40;">Admin Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="uname" style="font-weight: bold; color: #495057;">Username</label>
+            <input type="text" class="form-control" id="uname" name="uname" placeholder="Enter your username" required>
+        </div>
+        <div class="form-group">
+            <label for="pwd" style="font-weight: bold; color: #495057;">Password</label>
+            <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" style="font-weight: bold;">Login</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'navigation_bar.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Add Doctor</h2>
+    <form method="post" class="border p-4 shadow-sm rounded bg-light">
+        {% csrf_token %}
+        
+        <!-- Doctor Name -->
+        <div class="form-group">
+            <label for="name">Doctor Name</label>
+            <input type="text" id="name" class="form-control" name="name" placeholder="Enter doctor's name" required>
+        </div>
+
+        <!-- Contact -->
+        <div class="form-group">
+            <label for="contact">Contact</label>
+            <input type="tel" id="contact" class="form-control" name="contact" placeholder="Enter contact number" required>
+        </div>
+
+        <!-- Specialization -->
+        <div class="form-group">
+            <label for="special">Specialization</label>
+            <input type="text" id="special" class="form-control" name="special" placeholder="Enter specialization" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+</div>
+
+<!-- Success and Error Alerts -->
+{% ifequal error "no" %}
+<script>
+    alert('Record Added Successfully');
+    window.location.href = "{% url 'home' %}";
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert('Unable to Add Record. Please Try Again.');
+</script>
+{% endifequal %}
+
+{% endblock %}
