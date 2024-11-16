@@ -1,12 +1,24 @@
 {% extends 'navigation_bar.html' %}
 {% load static %}
 {% block body %}
-<div class="container" style="margin-top: 50px;">
-    <h2 class="text-center">About Us</h2>
-    <br><br><br><br>
-    <div class="row">
-        <div class="col-sm-4">
-            <img src="{% static 'images/about.jpg' %}">
+<div class="container my-5 py-4 rounded shadow-lg bg-light">
+    <h2 class="text-center font-weight-bold mb-4">About Us</h2>
+    <div class="row align-items-center">
+        <!-- Image Section -->
+        <div class="col-sm-4 text-center mb-4 mb-sm-0">
+            <img src="{% static 'images/its_a.jpg' %}" width="300" class="img-fluid rounded shadow-sm" alt="Hospital Management Project">
+        </div>
+        <!-- Text Section -->
+        <div class="col-sm-8">
+            <p class="text-justify text-secondary" style="line-height: 1.8;">
+                <span class="font-weight-bold text-dark">Hello Friends,</span><br>
+                Welcome to our <span class="text-primary font-italic">Hospital Management Project</span>, a platform designed to streamline hospital operations and enhance patient care. 
+                <br><br>
+                This project is developed using modern web technologies, including 
+                <strong>HTML, CSS, JavaScript, Bootstrap, Python Django,</strong> and <strong>SQLite</strong>. 
+                <br><br>
+                We aim to provide a seamless experience for both administrators and users with robust functionality and intuitive design.
+            </p>
         </div>
     </div>
 </div>
